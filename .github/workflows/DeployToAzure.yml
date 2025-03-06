@@ -1,5 +1,31 @@
 name: RGDeployment
-on:[push]
+on:
+ push:
+   branches:
+     - main
 jobs:
   resourcegroups:
     runs-on: ubuntu-latest
+    name: 'rg-job-name'
+    env: 
+      ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+      ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+      ARM_SUBSCRIPTIONID: ${{ MVP_SUBSCRIPTION }}
+    steps:
+      - name: checkout the repository
+        uses: actions/checkout@v2
+      - name: HashiCorp - Setup Terraform
+        uses: hashicorp/setup-terraform@v2.0.3
+      - name: Terraform Init
+        run: terraform init
+        
+      - name: Terraform Validate
+        run: terraform validate
+ 
+      - name: Terraform Plan
+        run: terraform plan
+        
+      - name: Terraform Apply
+        run: terraform apply --auto-approve
+        
