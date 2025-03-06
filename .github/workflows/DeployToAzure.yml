@@ -6,6 +6,8 @@ on:
 jobs:
   resourcegroups:
     runs-on: ubuntu-latest
+    environment:
+         name: Dev
     name: 'rg-job-name'
     env: 
       ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
