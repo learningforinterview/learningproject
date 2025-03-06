@@ -6,8 +6,8 @@ terraform {
     }
   }
   backend "azurerm" {
-    resource_group_name     = "rg-terraform-state-001"
-    storage_account_name    = "cloudninjaterraformstate"
+    resource_group_name     = "AKSargoCdPractice"
+    storage_account_name    = "techmterraformstorage"
     container_name          = "tfstate"
     key                     = "GitHub-Terraform-rg-connectivity-001"
   }
