@@ -1,0 +1,2 @@
+Location = "WestEurope"
+ResourceGroup = "MyResourceGroup"

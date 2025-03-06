@@ -1,9 +1,10 @@
 variable "Location" {
     type        = string
-    default     = "WestEurope"  
+    description = "location"
 }
 
 variable "ResourceGroup" {
     type        = string
+    description = "rg"
     default     = "rg-connectivity-network-001"   
 }
