@@ -1,0 +1,5 @@
+name: RGDeployment
+on:[push]
+jobs:
+  resourcegroups:
+    runs-on: ubuntu-latest
