@@ -7,11 +7,8 @@ on:
 jobs:
   resourcegroups:
     runs-on: ubuntu-latest
-    environment:
-         name: Dev
     name: 'rg-job-name'
     env:
-      ACTIONS_STEP_DEBUG: true
       ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
       ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
       ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
