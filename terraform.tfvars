@@ -1,2 +1,2 @@
-Location = "WestEurope"
-ResourceGroup = "MyResourceGroup"
+Location = "eastus"
+ResourceGroup = "githubpracticerg"
