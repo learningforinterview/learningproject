@@ -1,2 +1,5 @@
 Location = "eastus"
 ResourceGroup = "githubpracticerg"
+# client_secret=""
+# ="e7eef417-75da-490c-80dd-7e9ad3fe48d1"
+# ="4329145e-0305-4a9c-9654-2b5096ddd63d"
