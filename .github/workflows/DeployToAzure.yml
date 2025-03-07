@@ -16,6 +16,14 @@ jobs:
     steps:
       - name: checkout the repository
         uses: actions/checkout@v2
+      - name: Set up Azure CLI
+        uses: azure/setup-azure-cli@v1
+
+      - name: Register Azure Resource Providers
+        run: |
+          az provider register --namespace Microsoft.Resources
+          az provider register --namespace Microsoft.Compute
+          az provider register --namespace Microsoft.Storage
       - name: HashiCorp - Setup Terraform
         uses: hashicorp/setup-terraform@v2.0.3
       - name: Terraform Init
@@ -28,4 +36,8 @@ jobs:
         run: terraform apply --auto-approve
         env:
           ACTIONS_STEP_DEBUG: true
+          ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+          ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+          ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+          ARM_SUBSCRIPTION_ID: ${{ secrets.MVP_SUBSCRIPTION }}
         
