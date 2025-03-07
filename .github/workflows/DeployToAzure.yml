@@ -16,14 +16,6 @@ jobs:
     steps:
       - name: checkout the repository
         uses: actions/checkout@v2
-      - name: Set up Azure CLI
-        uses: azure/setup-azure-cli@v1
-
-      - name: Register Azure Resource Providers
-        run: |
-          az provider register --namespace Microsoft.Resources
-          az provider register --namespace Microsoft.Compute
-          az provider register --namespace Microsoft.Storage
       - name: HashiCorp - Setup Terraform
         uses: hashicorp/setup-terraform@v2.0.3
       - name: Terraform Init

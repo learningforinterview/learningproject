@@ -5,6 +5,10 @@ variable "Location" {
 
 variable "ResourceGroup" {
     type        = string
-    description = "rg"
-    default     = "rg-connectivity-network-001"   
+    description = "rg"   
 }
+
+# variable "client_secret" {
+#   type = string
+
+# }
