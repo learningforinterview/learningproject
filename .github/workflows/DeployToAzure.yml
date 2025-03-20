@@ -1,9 +1,6 @@
 name: RGDeployment
 on:
  workflow_dispatch:
- push:
-   branches:
-     - main
 jobs:
   resourcegroups:
     runs-on: ubuntu-latest
