@@ -1,20 +1,29 @@
-            - name: Docker build, Clair scan, ACR push
-  # You may pin to the exact commit or the version.
-  # uses: maciejboguta/docker-clair-acr-action@ad36c9f1f42c147161ff129352a9f04706d07483
-  uses: maciejboguta/docker-clair-acr-action@v0.2.0
-  with:
-    # Container repository and image name
-    image-name: 
-    # Image tag, defaults to latest
-    tag: # optional, default is latest
-    # Should image be pushed to ACR
-    should-push-to-acr: 
-    # Azure client id for authentication to ACR
-    client-id: 
-    # Azure client secret for authentication to ACR
-    client-secret: 
-    # ACR instance name
-    acr-name: 
-    # Private nuget feed token
-    nuget-pat: # optional
+name: RGDeployment
+on:
+ workflow_dispatch:
+jobs:
+  resourcegroups:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout the repository
+        uses: actions/checkout@v2
+      - name: Docker build, Clair scan, ACR push
+        # You may pin to the exact commit or the version.
+        # uses: maciejboguta/docker-clair-acr-action@ad36c9f1f42c147161ff129352a9f04706d07483
+        uses: maciejboguta/docker-clair-acr-action@v0.2.0
+        with:
+           # Container repository and image name
+           image-name: helloimage
+           # Image tag, defaults to latest
+           tag: mylatest
+           # Should image be pushed to ACR
+           should-push-to-acr: true
+           # Azure client id for authentication to ACR
+           client-id: 
+           # Azure client secret for authentication to ACR
+           client-secret: 
+           # ACR instance name
+           acr-name: 
+           # Private nuget feed token
+           nuget-pat: # optional
           
