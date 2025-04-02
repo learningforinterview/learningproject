@@ -21,7 +21,7 @@ jobs:
         with:
           username: ${{ secrets.AZURE_CLIENT_ID }}
           password: ${{ secrets.AZURE_CLIENT_SECRET }}
-          registry: ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io
+          registry: ${{ secrets.AZURE_REGISTRY_NAMEA }}.azurecr.io
       - name: Build Docker image
         run: |
            docker build -t ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/helloapp:${{ github.sha }} .
