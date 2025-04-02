@@ -7,7 +7,7 @@ jobs:
     steps:
       - name: checkout the repository
         uses: actions/checkout@v2
-      - name: azure/docker-login@v1
+      - uses: azure/docker-login@v1
         with:
           login-server: helmtestacr.azurecr.io
           username: helmtestacr
