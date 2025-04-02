@@ -1,4 +1,4 @@
-name: RGDeployment
+name: HelmARCAKSPractice
 on:
  workflow_dispatch:
 jobs:
@@ -10,24 +10,14 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
       - name: Log in to Azure
-        uses: azure/login@v1.5
+        uses: azure/login@v1
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-      - name: Log in to Azure Container Registry
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.AZURE_CLIENT_ID }}
-          password: ${{ secrets.AZURE_CLIENT_SECRET }}
-          registry: ${{ secrets.AZURE_REGISTRY_NAMEA }}.azurecr.io
-      - name: Build Docker image
-        run: |
-           docker build -t ${{ secrets.AZURE_REGISTRY_NAMEA }}.azurecr.io/helloapp:${{ github.sha }} .
-      - name: Push Docker image to ACR
-        run: |
-            docker push ${{ secrets.AZURE_REGISTRY_NAMEA }}.azurecr.io/helloapp:${{ github.sha }}
+      - run: 
+           az group list
 
            
           
