@@ -14,7 +14,7 @@ jobs:
           password: P6XQg4wpsH70PXaiNndEFvfTIf7eh51BR/Qx+aNZwa+ACRAw85ci
       - name: Build Docker image
         run: |
-           docker build -t helmtestacr.azurecr.io/helloapp:${{ github.sha }}
+           docker build . -t helmtestacr.azurecr.io/helloapp:${{ github.sha }}
       - name: Push Docker image to ACR
         run: |
             docker push helmtestacr.azurecr.io/helloapp:${{ github.sha }}
