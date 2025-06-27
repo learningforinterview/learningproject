@@ -6,6 +6,7 @@ on:
    - opened
 permissions:
  contents: write
+ issues: write
  
 jobs:
  getcli:
