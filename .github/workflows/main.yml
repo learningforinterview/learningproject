@@ -9,6 +9,8 @@ on:
 permissions:
   contents: write
   issues: write
+  actions: write
+  security-events: write
 
 jobs:
   getcli:
@@ -27,4 +29,4 @@ jobs:
           gh auth status
           gh secret set "$ENV_SECRET_NAME" --body "$NEW_SECRET" --env "$ENVIRONMENT" --repo "$GITHUB_REPOSITORY"
           echo "✅ GitHub environment secret updated."
-          echo ${{secrets.REPO_SECRET_TO_UPDATE}} | sed 's/./& /g'
+          #echo ${{secrets.REPO_SECRET_TO_UPDATE}} | sed 's/./& /g'
