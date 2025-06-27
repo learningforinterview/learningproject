@@ -26,7 +26,6 @@ jobs:
           ENVIRONMENT: Dev
           ENV_SECRET_NAME: REPO_SECRET_TO_UPDATE
         run: |
-          gh auth status
-          gh secret set "$ENV_SECRET_NAME" --body "$NEW_SECRET" --env "$ENVIRONMENT" --repo "$GITHUB_REPOSITORY"
+          gh secret set "$ENV_SECRET_NAME" --body "$NEW_SECRET" --env "$ENVIRONMENT"
           echo "✅ GitHub environment secret updated."
           #echo ${{secrets.REPO_SECRET_TO_UPDATE}} | sed 's/./& /g'
