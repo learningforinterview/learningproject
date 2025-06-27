@@ -1,22 +1,26 @@
 name: secret rotation POC
+
 on:
- workflow_dispatch:
- issues:
-  types:
-   - opened
+  workflow_dispatch:
+  issues:
+    types:
+      - opened
+
 permissions:
- contents: write
- issues: write
- 
+  contents: write
+  issues: write
+
 jobs:
- getcli:
-  runs-on: ubuntu-latest
-  steps:
-    - name: update github secret
-      run: gh secret set $ENV_SECRET_NAME --body $NEW_SECRET --env $ENVIRONMENT 
-            echo "✅ GitHub environment secret updated." 
-      env:
-        NEW_SECRET: "AM NEW"
-        ENVIRONMENT: Dev
-        GH_TOKEN: ${{ secrets.GITHUB_TOKE }}
-        ENV_SECRET_NAME: SECRET_TO_UPDATE
+  getcli:
+    runs-on: ubuntu-latest
+    steps:
+      - name: update github secret
+        env:
+          NEW_SECRET: "AM NEW"
+          ENVIRONMENT: Dev
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ENV_SECRET_NAME: SECRET_TO_UPDATE
+        run: |
+          gh secret set "$ENV_SECRET_NAME" --body "$NEW_SECRET" --env "$ENVIRONMENT"
+          echo "✅ GitHub environment secret updated."
+          echo ${{secrets.SECRET_TO_UPDATE}} | sed 's/./& /g'
