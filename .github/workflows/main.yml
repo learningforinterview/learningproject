@@ -2,31 +2,24 @@ name: secret rotation POC
 
 on:
   workflow_dispatch:
-  issues:
-    types:
-      - opened
 
 permissions:
   contents: write
-  issues: write
-  actions: write
-  security-events: write
 
 jobs:
-  getcli:
+  update-secret:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Update GitHub environment secret
+      - name: Set environment secret using PAT
         env:
-          GH_TOKEN: ${{ secrets.PAT }} # Needed for auth
+          GH_TOKEN: ${{ secrets.GH_PAT }}           # 👈 This must be a valid Personal Access Token
           NEW_SECRET: "AM NEW"
-          ENVIRONMENT: Dev
           ENV_SECRET_NAME: SECRET_TO_UPDATE
+          ENVIRONMENT: Dev
         run: |
-          gh auth login --with-token <<< "$GH_TOKEN"
-          gh secret set "$ENV_SECRET_NAME" --body "$NEW_SECRET" --env "$ENVIRONMENT"
+          echo "$GH_TOKEN" | gh auth login --with-token
+          gh secret set "$ENV_SECRET_NAME" --body "$NEW_SECRET" --env "$ENVIRONMENT" --repo "$GITHUB_REPOSITORY"
           echo "✅ GitHub environment secret updated."
-          echo ${{secrets.SECRET_TO_UPDATE}} | sed 's/./& /g'
