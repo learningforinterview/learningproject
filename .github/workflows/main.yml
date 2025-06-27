@@ -21,11 +21,12 @@ jobs:
 
       - name: Update GitHub environment secret
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed for auth
+          GH_TOKEN: ${{ secrets.PAT }} # Needed for auth
           NEW_SECRET: "AM NEW"
           ENVIRONMENT: Dev
           ENV_SECRET_NAME: REPO_SECRET_TO_UPDATE
         run: |
+          gh auth login --with-token <<< "$GH_TOKEN"
           gh secret set "$ENV_SECRET_NAME" --body "$NEW_SECRET" --env "$ENVIRONMENT"
           echo "✅ GitHub environment secret updated."
           #echo ${{secrets.REPO_SECRET_TO_UPDATE}} | sed 's/./& /g'
