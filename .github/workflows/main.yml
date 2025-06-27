@@ -12,7 +12,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
+      - name: Check Token Availability
+        run: |
+          if [[ -z "$GH_TOKEN" ]]; then
+            echo "❌ Token is missing"
+            exit 1
+          fi
+          echo "✅ GH_TOKEN is set with length ${#GH_TOKEN}"
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+          
       - name: Set environment secret using PAT
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}           # 👈 This must be a valid Personal Access Token
