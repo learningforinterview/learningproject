@@ -17,3 +17,12 @@ jobs:
       env: 
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         ISSUE: ${{ github.event.issue.html_url }}
+
+    - name: update github secret
+      run: gh secret set $ENV_SECRET_NAME --body $NEW_SECRET --env $ENVIRONMENT 
+
+            echo "✅ GitHub environment secret updated." 
+      env:
+        NEW_SECRET: "AM NEW"
+        ENVIRONMENT: Dev
+        ENV_SECRET_NAME: SECRET_TO_UPDATE
