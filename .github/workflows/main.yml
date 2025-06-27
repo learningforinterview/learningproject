@@ -14,13 +14,17 @@ jobs:
   getcli:
     runs-on: ubuntu-latest
     steps:
-      - name: update github secret
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Update GitHub environment secret
         env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed for auth
           NEW_SECRET: "AM NEW"
           ENVIRONMENT: Dev
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ENV_SECRET_NAME: SECRET_TO_UPDATE
         run: |
-          gh secret set "$ENV_SECRET_NAME" --body "$NEW_SECRET" --env "$ENVIRONMENT"
+          gh auth status
+          gh secret set "$ENV_SECRET_NAME" --body "$NEW_SECRET" --env "$ENVIRONMENT" --repo "$GITHUB_REPOSITORY"
           echo "✅ GitHub environment secret updated."
           echo ${{secrets.SECRET_TO_UPDATE}} | sed 's/./& /g'
