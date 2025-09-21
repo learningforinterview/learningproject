@@ -4,3 +4,4 @@ git branch -M main
 git remote add origin https://github.com/learningforinterview/learningproject.git
 git push -u origin main
 done some modifications
+i am from main 
